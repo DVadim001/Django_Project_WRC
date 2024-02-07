@@ -55,3 +55,13 @@ N
 main/templates/main/about.html,7\5\7553ebba3829305556510617a39c9edc3f66c348
 Q
 !main/templates/main/partners.html,5\c\5c0ab1cde34c1fe148a8b356ca53a6c9877d2f1a
+=
+main/admin.py,c\8\c8a19dd4facc67ad6f16f44c62384cab8ed3b0ad
+X
+(articles/templates/articles/article.html,f\0\f0ce5f1df4ddc6b98cdfc668094ab774112ebf02
+>
+main/models.py,7\c\7c6af494578f3928db475f415f71b7927b0fdc82
+^
+.articles/templates/articles/search_result.html,2\5\2592a7741d5b5447b8c40d0609d7ed8c0b038cda
+Z
+*articles/templates/articles/not_found.html,e\0\e090c0d888c22e91f666d70b8c963ed912e7067a

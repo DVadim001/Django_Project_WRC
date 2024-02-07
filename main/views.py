@@ -14,3 +14,8 @@ def about(request):
 # Отображение страницы Наши партнёры
 def partners(request):
     return render(request, 'main/partners.html')
+
+# Регистрация
+# Функция выхода
+#
+#
