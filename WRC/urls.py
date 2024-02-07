@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('events.urls')),
     path('', include('gallery.urls')),
     path('', include('news.urls')),
+    path('', include('main.urls')),
 ]
