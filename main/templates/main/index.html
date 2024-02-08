@@ -3,16 +3,19 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
-
+<h1>Все статьи</h1>
 {% for article in articles %}
 <div>
-    <h2>{{ article.article_title }}</h2>
-    <p>{{ article.article_text }}</p>
+    <h2><a href="{% url 'articles:article_detail' article.id %}">{{ article.article_title }}</a></h2>
+    <p>{{ article.article_text|truncatewords:30 }}</p> <!--Отображение первых 30 слов статьи-->
     <p>Категории:
         {% for category in article.article_to_category.all %}
             {{ category.category_name }}{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </p>
 </div>
+{% endfor %}
+
+
 
 {% endblock %}

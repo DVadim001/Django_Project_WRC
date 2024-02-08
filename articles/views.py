@@ -33,7 +33,7 @@ def article(request,pk):
         raise Http404('К сожалению, новость не найдена')
     comments = a.comments.order_by('-id')
     context = {'article': a, 'comments': comments}
-    return render(request, 'article.html', context)
+    return render(request, 'articles/article.html', context)
 
 
 # Поиск статей по фильтру

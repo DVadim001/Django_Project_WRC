@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from articles.models import Article
 
 
 # Отображение главной страницы
 def index(request):
-    return render(request, 'main/index.html')
+    articles = Article.objects.all()
+    context = {'articles': articles}
+    return render(request, 'main/index.html', context)
 
 
 # Отображение страницы О нас

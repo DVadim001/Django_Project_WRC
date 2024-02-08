@@ -13,7 +13,15 @@
         {% endfor %}
     </p>
 
+
 <!--    Вставить сюда комментарии и формы для них-->
+    {% for comment in article.comments.all %}
+    <div>
+        <strong>{{ comment.comment_author_article }}:</strong>
+        <p>{{ comment.comment_text_article }}</p>
+    </div>
+    {% endfor %}
+
 
 </article>
 {% endblock %}
