@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extents 'base.html' %}
 
-</body>
-</html>
+{% block title %}Статья не найдена.{% endblock %}
+
+{% block content %}
+<h2>Статья не найдена</h2>
+<p>К сожалению, запрашиваемая статья не найдена.</p>
+{% endblock %}

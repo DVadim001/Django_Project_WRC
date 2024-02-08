@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Статья: {{ article.article_title }} {% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ article.article_title }}</h1>
+    <p>{{ article.article_text }}</p>
+
+    <p>
+        {% for category in article.article_to_category.all %}
+            {{ category.category_name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+<!--    Вставить сюда комментарии и формы для них-->
+
+</article>
+{% endblock %}

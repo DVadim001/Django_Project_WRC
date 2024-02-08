@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Статьи в категории {{ category.category_name }}</h2>
+{% for article in articles %}
+    <div>
+        <h3>{{ article.article_title }}</h3>
+        <p>{{ article.article_text }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

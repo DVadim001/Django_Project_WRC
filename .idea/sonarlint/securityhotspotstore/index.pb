@@ -65,3 +65,5 @@ X
 .articles/templates/articles/search_result.html,2\5\2592a7741d5b5447b8c40d0609d7ed8c0b038cda
 Z
 *articles/templates/articles/not_found.html,e\0\e090c0d888c22e91f666d70b8c963ed912e7067a
+e
+5articles/templates/articles/articles_by_category.html,7\9\79a409e905dd6fa5e7b60d5c3ff52dd8089bad72

@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Wind Runners Club{% endblock %}</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Wind Runners Club{% endblock %}</title>
+    </head>
+    <body>
 
-    {% block content %}{% endblock %}
 
-</body>
+        <header>
+            <!--Вставить навигацию-->
+            {% block header %} {% endblock %}
+        </header>
+
+        {% block content %} {% endblock %}
+
+        <footer>
+            <!--Вставить футер-->
+            {% block footer %} {% endblock %}
+        </footer>
+
+
+    </body>
 </html>
