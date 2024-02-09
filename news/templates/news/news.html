@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Новость: {{ news.news_title }} {% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ news.news_title }}</h1>
+    <p>{{ news.news_text }}</p>
+
+    <p>
+        {% for category in news.category_news.all %}
+            {{ category.category_name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+
+<!--    Вставить сюда комментарии и формы для них-->
+    {% for comment in news.comments_news.all %}
+    <div>
+        <strong>{{ comment.comment_author_news }}:</strong>
+        <p>{{ comment.comment_text_news }}</p>
+    </div>
+    {% endfor %}
+
+
+</article>
+{% endblock %}

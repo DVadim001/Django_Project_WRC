@@ -67,3 +67,11 @@ Z
 *articles/templates/articles/not_found.html,e\0\e090c0d888c22e91f666d70b8c963ed912e7067a
 e
 5articles/templates/articles/articles_by_category.html,7\9\79a409e905dd6fa5e7b60d5c3ff52dd8089bad72
+M
+news/templates/news/news.html,b\b\bbedd8e0458925a438df064fae03a5edbf076fcb
+Y
+)news/templates/news/news_by_category.html,0\b\0b4741a37ba76232879184e1a871d9c2f56c8a5b
+R
+"news/templates/news/not_found.html,3\7\376a610d782f009b13918f2aea889c5f22ee49b5
+V
+&news/templates/news/search_result.html,4\6\46ac33d7c3de6a62ebc073e2af4bb879b23b60ca

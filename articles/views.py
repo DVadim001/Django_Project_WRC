@@ -30,7 +30,7 @@ def article(request,pk):
     try:
         a = Article.objects.get(id=pk)
     except:
-        raise Http404('К сожалению, новость не найдена')
+        raise Http404('К сожалению, статья не найдена')
     comments = a.comments.order_by('-id')
     context = {'article': a, 'comments': comments}
     return render(request, 'articles/article.html', context)
@@ -63,18 +63,3 @@ def comment(request, pk):
 # Если не найдено, то редирект на "не найдено"
 def article_not_found(request):
     return render(request, 'not_found.html')
-
-
-
-#
-#
-#
-#
-#
-#
-#
-#
-#
-
-
-

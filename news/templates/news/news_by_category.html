@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Новости в категории {{ category.category_name }}</h2>
+{% for item in news %}
+    <div>
+        <h3>{{ item.news_title }}</h3>
+        <p>{{ item.news_text }}</p>
+    </div>
+{% endfor %}
+{% endblock %}
