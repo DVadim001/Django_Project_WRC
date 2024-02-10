@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>События в категории {{ category.category_name_category }}</h2>
+{% for item in events %}
+    <div>
+        <h3>{{ item.event_title }}</h3>
+        <p>{{ item.event_text }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

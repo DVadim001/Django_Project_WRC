@@ -46,7 +46,7 @@ def search_article(request):
             context = {'articles': articles}
             return render(request, 'search_result.html', context)
         else:
-            # Если статьи ненайдены, перенаправляем на страницу "not found"
+            # Если статьи не найдены, перенаправляем на страницу "not found"
             return redirect('/not_found')
 
 
@@ -54,7 +54,7 @@ def search_article(request):
 def comment(request, pk):
     try:
         comm = Article.objects.get(id=pk)
-    except:
+    except Article.DoesNotExist:
         raise Http404('Статья не найдена.')
     comm.comments.create(comment_author_article=request.POST['name'], comment_text_article=request.POST['text'])
     return HttpResponseRedirect(reverse('articles:article_detail', args=(comm.id,)))

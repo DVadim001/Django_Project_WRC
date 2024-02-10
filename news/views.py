@@ -24,13 +24,13 @@ def news_by_category(request, category_id):
 
 
 # Вывод отдельной конкретной новости
-def news(request,pk):
+def news(request, pk):
     try:
-        a = News.objects.get(id=pk)
-    except:
+        news = News.objects.get(id=pk)
+    except News.DoesNotExist:
         raise Http404('К сожалению, новость не найдена')
-    comments = a.comments.order_by('-id')
-    context = {'news': a, 'comments': comments}
+    comments = news.comments.order_by('-id')
+    context = {'news': news, 'comments': comments}
     return render(request, 'news/news.html', context)
 
 
@@ -40,11 +40,11 @@ def search_news(request):
         get_news = request.POST.get('search_news')
         news = News.objects.filter(news_title__icontains=get_news)
         if news: # Проверяет, содержит ли запрос объекты
-            # Если статьи найдены, рендер страницы с результатами поиска
+            # Если новости найдены, рендер страницы с результатами поиска
             context = {'news': news}
             return render(request, 'search_result.html', context)
         else:
-            # Если статьи ненайдены, перенаправляем на страницу "not found"
+            # Если новости не найдены, перенаправляем на страницу "not found"
             return redirect('/not_found')
 
 
@@ -54,7 +54,7 @@ def comment(request, pk):
         comm_n = News.objects.get(id=pk)
     except:
         raise Http404('Новость не найдена.')
-    comm_n.comments_n.create(comment_author_news=request.POST['name'], comment_text_news=request.POST['text'])
+    comm_n.comments_news.create(comment_author_news=request.POST['name'], comment_text_news=request.POST['text'])
     return HttpResponseRedirect(reverse('news:news_detail', args=(comm_n.id,)))
 
 

@@ -75,3 +75,11 @@ R
 "news/templates/news/not_found.html,3\7\376a610d782f009b13918f2aea889c5f22ee49b5
 V
 &news/templates/news/search_result.html,4\6\46ac33d7c3de6a62ebc073e2af4bb879b23b60ca
+R
+"events/templates/events/event.html,1\d\1da0b88ac0e4632dec06fa62d71f17494ac46547
+^
+.events/templates/events/event_by_category.html,5\5\5556d5bd26258e870475783979b7d64176ef9556
+V
+&events/templates/events/not_found.html,8\d\8d690d54c299dd3893706e1d53f39543d83f305d
+Z
+*events/templates/events/search_result.html,f\6\f6fd1d21da358a45fadd222cabbd83addaaea024

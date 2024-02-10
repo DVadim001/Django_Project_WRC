@@ -18,4 +18,20 @@
 
 
 
+<h1>Все новости</h1>
+{% for item in news %}
+<div>
+    <h2><a href="{% url 'news:news_detail' item.id %}">{{ item.news_title }}</a></h2>
+    <p>{{ item.news_text|truncatewords:30 }}</p> <!--Отображение первых 30 слов новости-->
+    <p>Категории:
+        {% for category in item.category_news.all %}
+            {{ category.category_name_news }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+</div>
+{% endfor %}
+
+
+
+
 {% endblock %}

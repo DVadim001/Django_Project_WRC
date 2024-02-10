@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Событие: {{ event.event_title }} {% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ event.event_title }}</h1>
+    <p>{{ event.event_text }}</p>
+
+    <p>
+        {% for category in event.category_event.all %}
+            {{ category.category_name_category }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+
+<!--    Вставить сюда комментарии и формы для них-->
+    {% for comment in event.comments_event.all %}
+    <div>
+        <strong>{{ comment.comment_author_event }}:</strong>
+        <p>{{ comment.comment_text_event}}</p>
+    </div>
+    {% endfor %}
+
+
+</article>
+{% endblock %}

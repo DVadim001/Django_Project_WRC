@@ -3,10 +3,10 @@
 {% block content %}
 <h2>Результаты поиска</h2>
 
-{% if news %}
+{% if event %}
     <ul>
-        {% for item in news %}
-        <li><a href="{% url 'news:news_detail' news.id %}">{{ item.news_title }}</a></li>
+        {% for item in events %}
+        <li><a href="{% url 'events:event_detail' item.id %}">{{ item.event_title }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
