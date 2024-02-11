@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=256, help_text='Required. Inform a valid email address. Введите правильный адрес.')
+    email = forms.EmailField(max_length=256,
+                             help_text='Required. Inform a valid email address. Введите правильный адрес.')
 
     class Meta:
         model = User

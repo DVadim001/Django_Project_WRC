@@ -34,13 +34,11 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('main:index')
     else:
         form = SignUpForm()
         context = {'form': form}
-    return render(request, 'signup.html', context)
-
-
+    return render(request, 'main/signup.html', context)
 
 
 # Функция выхода

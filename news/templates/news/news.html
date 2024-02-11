@@ -9,14 +9,19 @@
     <p>{{ news.news_text }}</p>
 
 
-
+{% if user.is_authenticated %}
 <!--    Форма для комментариев-->
     <form action="{% url 'news:news_comment' news.pk %}" method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}
         <button type="submit">Оставить комментарий</button>
     </form>
-
+    {% else %}
+    <p>
+        Для оставления комментария необходимо <a href="{% url 'login' %}">Войти</a>
+         или <a href="{% url 'signup' %}">Зарегистрироваться</a>.
+    </p>
+{% endif %}
 
 <!--    Вывод категорий новостей -->
     <p>

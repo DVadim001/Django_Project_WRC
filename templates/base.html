@@ -15,7 +15,9 @@
                     <a href="{% url 'news:news_list' %}">Новости</a>
                     <a href="{% url 'articles:article_list' %}">Статьи</a>
                     <a href="{% url 'events:event_list' %}">События</a>
-                    <a href="{% url 'signup' %}">Регистрация</a>
+                    <a href="{% url 'main:signup' %}">Регистрация</a>
+                    <a href="{% url 'main:about' %}">О нас</a>
+                    <a href="{% url 'main:partners' %}">Наши партнёры</a>
                 </nav>
             {% endblock %}
         </header>

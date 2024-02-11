@@ -9,13 +9,19 @@
     <p>{{ event.event_text }}</p>
 
 
+    {% if user.is_authenticated %}
     <!--    Форма для комментариев-->
     <form action="{% url 'events:event_comment' event.pk %}" method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}
         <button type="submit">Оставить комментарий</button>
     </form>
-
+    {% else %}
+    <p>
+        Для оставления комментария необходимо <a href="{% url 'login' %}">Войти</a>
+         или <a href="{% url 'signup' %}">Зарегистрироваться</a>.
+    </p>
+{% endif %}
 
 <!--    Вывод категорий событий-->
     <p>
