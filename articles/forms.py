@@ -7,5 +7,6 @@ class SearchForm(forms.Form):
 
 
 class CommentForm(forms.ModelForm):
-    model = Comment
-    fields = ['comment_text_article', 'comment_author_article']
+    class Meta:
+        model = Comment
+        fields = ['comment_text_article', 'comment_author_article']

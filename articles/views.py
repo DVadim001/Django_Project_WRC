@@ -1,15 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
 from .models import Article, Category, Comment
+from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-
-from django.http import HttpResponse
-
-
 
 
 # Вывод всех статей на основной странице по статьям
@@ -29,13 +27,25 @@ def articles_by_category(request, category_id):
 
 
 # Вывод отдельной конкретной статьи
-def article(request,pk):
-    try:
-        a = Article.objects.get(id=pk)
-    except:
-        raise Http404('К сожалению, статья не найдена')
-    comments = a.comments.order_by('-id')
-    context = {'article': a, 'comments': comments}
+def article(request, pk):
+    article_item = get_object_or_404(Article, pk=pk)
+    comments = article_item.comments.order_by('-id')
+    if request.method == 'POST':
+        # Создаём экземпляр формы и заполняем его данными из запроса:
+        comment_form = forms.CommentForm(request.POST)
+        # Проверяем валидность формы:
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False) # Сразу в БД не сохраняем
+            comment.article = article_item # Привязываем комментарий к конкретной новости
+            comment.save() # Теперь сохраняем
+            return redirect('articles:article_detail', pk=article_item.pk) # Перенаправляем обратно к новости
+    else:
+        comment_form = forms.CommentForm() # Создаём пустой экземпляр формы для GET-запроса
+
+    # Добавляем форму комментария в текст
+    context = {'article': article_item,
+               'comments': comments,
+               'comment_form': comment_form}
     return render(request, 'articles/article.html', context)
 
 
@@ -53,14 +63,21 @@ def search_article(request):
             return redirect('/not_found')
 
 
-# Оставление комментария на стр определённой статьи
+# Оставление комментария на стр определённой статьи зарегистрированным пользователем
+@login_required
 def comment(request, pk):
-    try:
-        comm = Article.objects.get(id=pk)
-    except Article.DoesNotExist:
+    article_item = Article.objects.filter(pk=pk).first()
+    if not article_item:
         raise Http404('Статья не найдена.')
-    comm.comments.create(comment_author_article=request.POST['name'], comment_text_article=request.POST['text'])
-    return HttpResponseRedirect(reverse('articles:article_detail', args=(comm.id,)))
+
+    if request.method == "POST":
+        comment_form = forms.CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.comment_article = article_item  # Устанавливаем связь с новостью правильно
+            comment.save()
+            return HttpResponseRedirect(reverse('articles:article_detail', args=[article_item.pk,]))
+    return HttpResponseRedirect(reverse('articles:article_detail', args=[article_item.pk,]))
 
 
 # Если не найдено, то редирект на "не найдено"

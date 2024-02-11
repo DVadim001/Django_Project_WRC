@@ -83,8 +83,6 @@ V
 &events/templates/events/not_found.html,8\d\8d690d54c299dd3893706e1d53f39543d83f305d
 Z
 *events/templates/events/search_result.html,f\6\f6fd1d21da358a45fadd222cabbd83addaaea024
-U
-%events/templates/events/event_list.py,9\7\97f8f22901569fe9cc708606791afc0260bdc1b8
 ]
 -articles/templates/articles/article_list.html,a\4\a48c8dea69fa64c9096d74d8815e77da67381c82
 R
@@ -97,3 +95,11 @@ A
 events/forms.py,8\3\838a138322aff3058cc73da38a25a6b399e6b46d
 =
 news/forms.py,e\f\ef3037761f7b9469daffc52727a5fd9f423acf67
+=
+main/forms.py,c\8\c8b8c423e5a0738295dc14be6587bad46a9bebb8
+O
+main/templates/main/signup.html,b\1\b1d45cf75e22918f70bec86f9d584b18cdf8a6ef
+Q
+!templates/registration/login.html,7\b\7bddf72c7b5006bedb31206aeb760a16166f7b95
+R
+"templates/registration/logout.html,3\5\35b722350003b76a42f5a1eca82813e331c3f057

@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
 from .models import Event, Category, Comment
+from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-
-from django.http import HttpResponse
 
 
 # Вывод всех событий на основной странице по событиям
@@ -28,12 +28,24 @@ def events_by_category(request, category_id):
 
 # Вывод отдельной конкретной новости
 def event(request, pk):
-    try:
-        event = Event.objects.get(id=pk)
-    except Event.DoesNotExist:
-        raise Http404('К сожалению, Событие не найдена')
-    comments = event.comments_event.order_by('-id')
-    context = {'event': event, 'comments': comments}
+    event_item = get_object_or_404(Event, pk=pk)
+    comments = event_item.comments_event.order_by('-id')
+    if request.method == 'POST':
+        # Создаём экземпляр формы и заполняем его данными из запроса:
+        comment_form = forms.CommentForm(request.POST)
+        # Проверяем валидность формы:
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False) # Сразу в БД не сохраняем
+            comment.event = event_item # Привязываем комментарий к конкретной новости
+            comment.save() # Теперь сохраняем
+            return redirect('events:event_detail', pk=event_item.pk) # Перенаправляем обратно к новости
+    else:
+        comment_form = forms.CommentForm() # Создаём пустой экземпляр формы для GET-запроса
+
+    # Добавляем форму комментария в текст
+    context = {'event': event_item,
+               'comments': comments,
+               'comment_form': comment_form}
     return render(request, 'events/event.html', context)
 
 
@@ -51,14 +63,20 @@ def search_event(request):
             return redirect('/not_found')
 
 
-# Оставление комментария на стр определённого события
+# Оставление комментария на стр определённого события зарегистрированным пользователем
+@login_required
 def comment(request, pk):
-    try:
-        comm_e = Event.objects.get(id=pk)
-    except:
-        raise Http404('Новость не найдена.')
-    comm_e.comments_event.create(comment_author_event=request.POST['name'], comment_text_event=request.POST['text'])
-    return HttpResponseRedirect(reverse('event:event_detail', args=(comm_e.id,)))
+    event_item = Event.objects.filter(pk=pk).first()
+    if not event_item:
+        raise Http404('Событие не найдено.')
+    if request.method == "POST":
+        comment_form = forms.CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.comment_event = event_item  # Устанавливаем связь с новостью правильно
+            comment.save()
+            return HttpResponseRedirect(reverse('events:event_detail', args=[event_item.pk,]))
+    return HttpResponseRedirect(reverse('events:event_detail', args=[event_item.pk,]))
 
 
 # Если не найдено, то редирект на "не найдено"

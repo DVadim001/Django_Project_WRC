@@ -4,9 +4,20 @@
 
 {% block content %}
 <article>
+<!--    Детали статьи-->
     <h1>{{ article.article_title }}</h1>
     <p>{{ article.article_text }}</p>
 
+
+    <!--    Форма для комментариев-->
+    <form action="{% url 'articles:article_comment' article.pk %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Оставить комментарий</button>
+    </form>
+
+
+    <!--    Вывод категорий статей -->
     <p>
         {% for category in article.article_to_category.all %}
             {{ category.category_name }}{% if not forloop.last %}, {% endif %}
@@ -14,7 +25,7 @@
     </p>
 
 
-<!--    Вставить сюда комментарии и формы для них-->
+<!--    Вывод комментариев   -->
     {% for comment in article.comments.all %}
     <div>
         <strong>{{ comment.comment_author_article }}:</strong>

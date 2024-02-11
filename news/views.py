@@ -3,6 +3,7 @@ from . import forms
 from .models import News, Category, Comment
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -14,6 +15,7 @@ def main_news(request):
     news = News.objects.order_by('-news_date')
     context = {'search': search, 'news': news}
     return render(request, 'news/news_list.html', context)
+
 
 # Вывод новостей по определённой категории
 def news_by_category(request, category_id):
@@ -60,26 +62,21 @@ def search_news(request):
             return redirect('/not_found')
 
 
-# Оставление комментария на стр определённой новости
-# def comment(request, pk):
-#     try:
-#         comm_n = News.objects.get(id=pk)
-#     except:
-#         raise Http404('Новость не найдена.')
-#     comm_n.comments_news.create(comment_author_news=request.POST['name'], comment_text_news=request.POST['text'])
-#     return HttpResponseRedirect(reverse('news:news_detail', args=(comm_n.id,)))
-
-
+# Оставление комментария на стр определённой новости зарегистрированным пользователем
+@login_required
 def comment(request, pk):
-    news_item = get_object_or_404(News, pk)
+    news_item = News.objects.filter(pk=pk).first()
+    if not news_item:
+        raise Http404('Новость не найдена.')
+
     if request.method == "POST":
         comment_form = forms.CommentForm(request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.comment_news = news_item
+            comment.comment_news = news_item  # Устанавливаем связь с новостью правильно
             comment.save()
-            return HttpResponseRedirect(reverse('news:news_detail', args=(news_item.pk,)))
-    return HttpResponseRedirect(reverse('news:news_detail', args=(news_item.pk,)))
+            return HttpResponseRedirect(reverse('news:news_detail', args=[news_item.pk,]))
+    return HttpResponseRedirect(reverse('news:news_detail', args=[news_item.pk,]))
 
 
 # Если не найдено, то редирект на "не найдено"
