@@ -1,5 +1,7 @@
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
+from django.views import View
 
 from articles.models import Article
 from news.models import News
@@ -28,6 +30,7 @@ def about(request):
 def partners(request):
     return render(request, 'main/partners.html')
 
+
 # Регистрация
 def signup(request):
     if request.method == 'POST':
@@ -42,3 +45,7 @@ def signup(request):
 
 
 # Функция выхода
+class LogoutWithGetView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('main:index')

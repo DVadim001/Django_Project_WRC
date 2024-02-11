@@ -18,6 +18,12 @@
                     <a href="{% url 'main:signup' %}">Регистрация</a>
                     <a href="{% url 'main:about' %}">О нас</a>
                     <a href="{% url 'main:partners' %}">Наши партнёры</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" methods="post">Выход</a>
+                    {% else %}
+                    <a href="{% url 'login' %}">Вход </a>|
+                    <a href="{% url 'main:signup' %}"> Регистрация</a>
+                    {% endif %}
                 </nav>
             {% endblock %}
         </header>
