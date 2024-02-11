@@ -51,16 +51,16 @@ def article(request, pk):
 
 # Поиск статей по фильтру
 def search_article(request):
-    if request.method == 'POST':
-        get_article = request.POST.get('search_article')
+    if 'search_article' in request.GET:
+        get_article = request.GET.get('search_article')
         articles = Article.objects.filter(article_title__icontains=get_article)
         if articles: # Проверяет, содержит ли запрос объекты
             # Если статьи найдены, рендер страницы с результатами поиска
             context = {'articles': articles}
-            return render(request, 'search_result.html', context)
+            return render(request, 'articles/search_result.html', context)
         else:
             # Если статьи не найдены, перенаправляем на страницу "not found"
-            return redirect('/not_found')
+            return redirect('articles:article_not_found')
 
 
 # Оставление комментария на стр определённой статьи зарегистрированным пользователем
@@ -69,7 +69,6 @@ def comment(request, pk):
     article_item = Article.objects.filter(pk=pk).first()
     if not article_item:
         raise Http404('Статья не найдена.')
-
     if request.method == "POST":
         comment_form = forms.CommentForm(request.POST)
         if comment_form.is_valid():
@@ -82,4 +81,4 @@ def comment(request, pk):
 
 # Если не найдено, то редирект на "не найдено"
 def article_not_found(request):
-    return render(request, 'not_found.html')
+    return render(request, 'articles/not_found.html')

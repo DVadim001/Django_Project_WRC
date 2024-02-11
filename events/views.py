@@ -51,16 +51,16 @@ def event(request, pk):
 
 # Поиск новостей по фильтру
 def search_event(request):
-    if request.method == 'POST':
-        get_event = request.POST.get('search_event')
-        event = Event.objects.filter(event_title__icontains=get_event)
+    if 'search_query' in request.GET:
+        get_event = request.GET.get('search_query')
+        events = Event.objects.filter(event_title__icontains=get_event)
         if event: # Проверяет, содержит ли запрос объекты
             # Если статьи найдены, рендер страницы с результатами поиска
-            context = {'event': event}
-            return render(request, 'search_result.html', context)
+            context = {'events': events}
+            return render(request, 'events/search_result.html', context)
         else:
             # Если статьи не найдены, перенаправляем на страницу "not found"
-            return redirect('/not_found')
+            return redirect('events:event_not_found')
 
 
 # Оставление комментария на стр определённого события зарегистрированным пользователем
@@ -81,5 +81,5 @@ def comment(request, pk):
 
 # Если не найдено, то редирект на "не найдено"
 def event_not_found(request):
-    return render(request, 'not_found.html')
+    return render(request, 'events/not_found.html')
 

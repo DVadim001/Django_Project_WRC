@@ -4,6 +4,11 @@
 
 {% block content %}
 
+<form method="get" action="{% url 'news:search_news' %}">
+    <input type="text" name="search_query" placeholder="Поиск новостей...">
+    <button type="submit">Поиск</button>
+</form>
+
 <h1>Все новости</h1>
 {% for item in news %}
 <div>
@@ -11,11 +16,10 @@
     <p>{{ item.news_text|truncatewords:30 }}</p> <!--Отображение первых 30 слов новости-->
     <p>Категории:
         {% for category in item.category_news.all %}
-            {{ category.category_name_news }}{% if not forloop.last %}, {% endif %}
+            <a href="{% url 'news:news_by_category' category.id %}">{{ category.category_name_news }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </p>
 </div>
 {% endfor %}
-
 
 {% endblock %}

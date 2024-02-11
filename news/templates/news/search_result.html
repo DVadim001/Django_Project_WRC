@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Результаты поиска</h2>
+    <h2>Результаты поиска</h2>
 
-{% if news %}
-    <ul>
-        {% for item in news %}
-        <li><a href="{% url 'news:news_detail' news.id %}">{{ item.news_title }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>По вашему запросу ничего не найдено.</p>
-{% endif %}
-
+    {% if news %}
+        <ul>
+            {% for item in news %}
+                <li><a href="{% url 'news:news_detail' item.pk %}">{{ item.news_title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>По вашему запросу ничего не найдено.</p>
+    {% endif %}
 {% endblock %}

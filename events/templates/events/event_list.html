@@ -4,6 +4,14 @@
 
 {% block content %}
 
+
+<form method="get" action="{% url 'events:search_events' %}">
+    <input type="text" name="search_query" placeholder="Поиск событий...">
+    <button type="submit">Поиск</button>
+</form>
+
+
+
 <h1>Предстоящие события</h1>
 {% for event in events %}
 <div>

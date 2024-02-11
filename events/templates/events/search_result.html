@@ -3,7 +3,7 @@
 {% block content %}
 <h2>Результаты поиска</h2>
 
-{% if event %}
+{% if events %}
     <ul>
         {% for item in events %}
         <li><a href="{% url 'events:event_detail' item.id %}">{{ item.event_title }}</a></li>

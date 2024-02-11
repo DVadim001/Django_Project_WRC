@@ -20,9 +20,9 @@ def main_news(request):
 # Вывод новостей по определённой категории
 def news_by_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
-    news = category.category_news.all()
+    news = News.objects.filter(category_news=category).order_by('-news_date')
     context = {'category': category, 'news': news}
-    return render(request, 'news_by_category.html', context)
+    return render(request, 'news/news_by_category.html', context)
 
 
 # Вывод отдельной конкретной новости
@@ -50,16 +50,16 @@ def news(request, pk):
 
 # Поиск новостей по фильтру
 def search_news(request):
-    if request.method == 'POST':
-        get_news = request.POST.get('search_news')
-        news = News.objects.filter(news_title__icontains=get_news)
+    if 'search_query' in request.GET:
+        search_query = request.GET.get('search_query')
+        news = News.objects.filter(news_title__icontains=search_query)
         if news: # Проверяет, содержит ли запрос объекты
             # Если новости найдены, рендер страницы с результатами поиска
             context = {'news': news}
-            return render(request, 'search_result.html', context)
+            return render(request, 'news/search_result.html', context)
         else:
             # Если новости не найдены, перенаправляем на страницу "not found"
-            return redirect('/not_found')
+            return redirect('news:not_found')
 
 
 # Оставление комментария на стр определённой новости зарегистрированным пользователем
@@ -81,5 +81,5 @@ def comment(request, pk):
 
 # Если не найдено, то редирект на "не найдено"
 def news_not_found(request):
-    return render(request, 'not_found.html')
+    return render(request, 'news/not_found.html')
 

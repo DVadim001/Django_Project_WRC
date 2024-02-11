@@ -3,6 +3,14 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
+
+<form method="get" action="{% url 'articles:search_article' %}">
+    {% csrf_token %}
+    <input type="text" name="search_article" placeholder="Поиск статей...">
+    <button type="submit">Поиск</button>
+</form>
+
+
 <h1>Все статьи</h1>
 {% for article in articles %}
 <div>
