@@ -9,6 +9,10 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name_news
 
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
 
 # Таблица новостей
 class News(models.Model):

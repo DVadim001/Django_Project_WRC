@@ -9,7 +9,14 @@
 
         <header>
 
-            {% block header %} Вставить навигацию {% endblock %}
+            {% block header %}
+                <nav>
+                    <a href="{% url 'main:index' %}">Главная</a>
+                    <a href="{% url 'news:news_list' %}">Новости</a>
+                    <a href="{% url 'articles:article_list' %}">Статьи</a>
+                    <a href="{% url 'events:event_list' %}">События</a>
+                </nav>
+            {% endblock %}
         </header>
 
         {% block content %} {% endblock %}

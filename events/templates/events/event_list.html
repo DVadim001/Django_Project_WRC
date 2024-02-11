@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+
+<h1>Предстоящие события</h1>
+{% for event in events %}
+<div>
+    <h2><a href="{% url 'events:event_detail' event.id %}">{{ event.event_title }}</a></h2>
+    <p>{{ event.event_text|truncatewords:30 }}</p> <!--Отображение первых 30 слов новости-->
+    <p>Категории:
+        {% for category in event.event_to_category.all %}
+            {{ category.category_name_category }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+</div>
+{% endfor %}
+
+
+
+{% endblock %}

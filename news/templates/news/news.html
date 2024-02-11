@@ -4,14 +4,28 @@
 
 {% block content %}
 <article>
+<!--    Детили новости-->
     <h1>{{ news.news_title }}</h1>
     <p>{{ news.news_text }}</p>
 
+
+
+<!--    Форма для комментариев-->
+    <form action="{% url 'news:news_comment' news.pk %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Оставить комментарий</button>
+    </form>
+
+
+<!--    Вывод категорий новостей -->
     <p>
         {% for category in news.category_news.all %}
             {{ category.category_name }}{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </p>
+
+
 
 
 <!--    Вставить сюда комментарии и формы для них-->

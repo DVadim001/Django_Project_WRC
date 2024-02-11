@@ -1,19 +1,22 @@
-from django.shortcuts import render, redirect
-# from . import forms
-from .models import Event, Category
+from django.shortcuts import render, redirect, get_object_or_404
+from . import forms
+from .models import Event, Category, Comment
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.views import View
 
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 
 from django.http import HttpResponse
 
-from django.shortcuts import get_object_or_404
 
+# Вывод всех событий на основной странице по событиям
+def main_event(request):
+    search = forms.SearchForm()
+    events = Event.objects.order_by('-event_date')
+    context = {'search': search, 'events': events}
+    return render(request, 'events/event_list.html', context)
 
-# # Вывод всех событий
 
 # Вывод события по определённой категории
 def events_by_category(request, category_id):

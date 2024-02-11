@@ -1,21 +1,24 @@
-from django.shortcuts import render, redirect
-# from . import forms
-from .models import Article, Category
+from django.shortcuts import render, redirect, get_object_or_404
+from . import forms
+from .models import Article, Category, Comment
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.views import View
 
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 
 from django.http import HttpResponse
 
-from django.shortcuts import get_object_or_404
 
 
 
+# Вывод всех статей на основной странице по статьям
+def main_article(request):
+    search = forms.SearchForm()
+    articles = Article.objects.order_by('-article_date')
+    context = {'search': search, 'articles': articles}
+    return render(request, 'articles/article_list.html', context)
 
-# Вывод всех статей
 
 # Вывод статей по определённой категории
 def articles_by_category(request, category_id):
