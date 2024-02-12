@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
+
+{% block title %}Статьи категории: {{ category.category_name }}{% endblock %}
+
 {% block content %}
-<h2>Статьи в категории {{ category.category_name }}</h2>
-{% for article in articles %}
-    <div>
-        <h3>{{ article.article_title }}</h3>
-        <p>{{ article.article_text }}</p>
-    </div>
-{% endfor %}
+    <h2>Статьи в категории "{{ category.category_name }}"</h2>
+
+    <!-- Список статей данной категории -->
+    {% for article in articles %}
+        <div>
+            <h3><a href="{% url 'articles:article_detail' article.id %}">{{ article.article_title }}</a></h3>
+            <p>{{ article.article_text|truncatewords:30 }}</p>
+        </div>
+    {% empty %}
+        <p>В этой категории пока нет статей.</p>
+    {% endfor %}
+
+    <!-- Ссылка на возврат к списку всех статей -->
+    <a href="{% url 'articles:article_list' %}">Вернуться к списку всех статей</a>
+
 {% endblock %}

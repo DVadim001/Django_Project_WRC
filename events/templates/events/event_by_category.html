@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% block title %}События категории: {{ category.category_name_category }}{% endblock %}
 {% block content %}
-<h2>События в категории {{ category.category_name_category }}</h2>
-{% for item in events %}
+<h2>События в категории "{{ category.category_name_category }}"</h2>
+{% for event_item in events %}
     <div>
-        <h3>{{ item.event_title }}</h3>
-        <p>{{ item.event_text }}</p>
+        <h3><a href="{% url 'events:event_detail' event_item.id %}">{{ event_item.event_title }}</a></h3>
+        <p>{{ event_item.event_text|truncatewords:30 }}</p>
     </div>
 {% endfor %}
 {% endblock %}

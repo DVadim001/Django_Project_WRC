@@ -1,12 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
-from .models import Article, Category, Comment
+from .models import Article, Category
 from django.contrib.auth.decorators import login_required
-
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
-
-from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 
 
@@ -23,7 +19,7 @@ def articles_by_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
     articles = category.category_article.all()
     context = {'category': category, 'articles': articles}
-    return render(request, 'articles_by_category.html', context)
+    return render(request, 'articles/articles_by_category.html', context)
 
 
 # Вывод отдельной конкретной статьи

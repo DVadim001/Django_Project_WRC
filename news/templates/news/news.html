@@ -23,14 +23,12 @@
     </p>
 {% endif %}
 
-<!--    Вывод категорий новостей -->
+<!--    Вывод категорий новостей как ссылки-->
     <p>
-        {% for category in news.category_news.all %}
-            {{ category.category_name }}{% if not forloop.last %}, {% endif %}
+        {% for category in news.news_to_category.all %}
+        <a href="{% url 'news:news_by_category' category.id %}">{{ category.category_name_news }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </p>
-
-
 
 
 <!--    Вывод комментариев   -->

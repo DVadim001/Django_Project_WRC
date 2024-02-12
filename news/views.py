@@ -1,11 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
-from .models import News, Category, Comment
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
+from .models import News, Category
 from django.contrib.auth.decorators import login_required
-
-from django.http import Http404, HttpResponseRedirect, HttpResponseForbidden, HttpResponse
+from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 
 
@@ -20,9 +17,8 @@ def main_news(request):
 # Вывод новостей по определённой категории
 def news_by_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
-    news = News.objects.filter(category_news=category).order_by('-news_date')
-    context = {'category': category, 'news': news}
-    return render(request, 'news/news_by_category.html', context)
+    news = category.category_news.all()
+    return render(request, 'news/news_by_category.html', {'category': category, 'news': news})
 
 
 # Вывод отдельной конкретной новости

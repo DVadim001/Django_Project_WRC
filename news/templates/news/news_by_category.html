@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
+
+{% block title %}Новости категории: {{ category.category_name_news }}{% endblock %}
+
 {% block content %}
-<h2>Новости в категории {{ category.category_name }}</h2>
-{% for item in news %}
-    <div>
-        <h3>{{ item.news_title }}</h3>
-        <p>{{ item.news_text }}</p>
-    </div>
+    <h2>Новости в категории "{{ category.category_name_news }}"</h2>
+
+    <!-- Список новостей данной категории -->
+    {% for news_item in news %}
+        <div>
+            <h3><a href="{% url 'news:news_detail' news_item.id %}">{{ news_item.news_title }}</a></h3>
+            <p>{{ news_item.news_text|truncatewords:30 }}</p>
+        </div>
+        {% empty %}
+            <p>В этой категории пока нет статей.</p>
 {% endfor %}
+
+<!-- Ссылка на возврат к списку всех статей -->
+    <a href="{% url 'articles:article_list' %}">Вернуться к списку всех статей</a>
+
 {% endblock %}

@@ -101,5 +101,3 @@ O
 main/templates/main/signup.html,b\1\b1d45cf75e22918f70bec86f9d584b18cdf8a6ef
 Q
 !templates/registration/login.html,7\b\7bddf72c7b5006bedb31206aeb760a16166f7b95
-R
-"templates/registration/logout.html,3\5\35b722350003b76a42f5a1eca82813e331c3f057

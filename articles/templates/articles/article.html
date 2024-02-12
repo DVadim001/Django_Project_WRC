@@ -26,7 +26,7 @@
     <!--    Вывод категорий статей -->
     <p>
         {% for category in article.article_to_category.all %}
-            {{ category.category_name }}{% if not forloop.last %}, {% endif %}
+        <a href="{% url 'articles:articles_by_category' category.id %}">{{ category.category_name }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </p>
 

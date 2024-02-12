@@ -16,7 +16,7 @@ class Category(models.Model):
 
 # Таблица событий
 class Event(models.Model):
-    event_to_category = models.ManyToManyField(Category, blank=True, related_name='category_event')
+    event_to_category = models.ManyToManyField(Category, related_name='category_event', blank=True)
     event_title = models.CharField('Название события', max_length=256)
     event_text = models.TextField('Текст события')
     event_date = models.DateTimeField('Дата события',auto_now_add=True)
