@@ -15,7 +15,7 @@
 {% for article in articles %}
 <div>
     <h2><a href="{% url 'articles:article_detail' article.id %}">{{ article.article_title }}</a></h2>
-    <p>{{ article.article_text|truncatewords:30 }}</p> <!--Отображение первых 30 слов статьи-->
+    <p>{{ article.content|truncatewords:30|safe }}</p> <!--Отображение первых 30 слов статьи-->
     <p>Категории:
         {% for category in article.article_to_category.all %}
         <a href="{% url 'articles:articles_by_category' category.id %}">{{ category.category_name }}</a>{% if not forloop.last %}, {% endif %}

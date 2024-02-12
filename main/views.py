@@ -31,6 +31,16 @@ def partners(request):
     return render(request, 'main/partners.html')
 
 
+# Отображение страницы Политики конфеденциальности
+def privacy_policy(request):
+    return render(request, 'privacy_policy.html')
+
+
+# Отображение страницы Условий использования
+def terms_of_use(request):
+    return render(request, 'terms_of_use.html')
+
+
 # Регистрация
 def signup(request):
     if request.method == 'POST':

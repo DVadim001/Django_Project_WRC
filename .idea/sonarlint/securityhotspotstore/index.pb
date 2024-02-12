@@ -101,3 +101,11 @@ O
 main/templates/main/signup.html,b\1\b1d45cf75e22918f70bec86f9d584b18cdf8a6ef
 Q
 !templates/registration/login.html,7\b\7bddf72c7b5006bedb31206aeb760a16166f7b95
+F
+templates/privacy.html,1\1\11ea096a00fbc0f8d51f0dfb3967f8f01fe6a887
+D
+templates/terms.html,0\4\045162ddc4806f7d4222263bcc983f748815183c
+M
+templates/privacy_policy.html,f\d\fd25fea08ed177f21c859f610b98d8a2da839991
+K
+templates/terms_of_use.html,4\7\474133a93f59c44c50ce370e06136aa7d7f16042

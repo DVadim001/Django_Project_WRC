@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'gallery',
     'events',
     'main',
+    'ckeditor',
+
 ]
 
 MIDDLEWARE = [

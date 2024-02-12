@@ -9,7 +9,7 @@
     {% for article in articles %}
         <div>
             <h3><a href="{% url 'articles:article_detail' article.id %}">{{ article.article_title }}</a></h3>
-            <p>{{ article.article_text|truncatewords:30 }}</p>
+            <p>{{ article.content|truncatewords:30|safe }}</p>
         </div>
     {% empty %}
         <p>В этой категории пока нет статей.</p>

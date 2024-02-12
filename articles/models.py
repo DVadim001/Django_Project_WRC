@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 # Таблица категорий статей
@@ -16,9 +17,10 @@ class Category(models.Model):
 
 # Таблица статей
 class Article(models.Model):
-    article_to_category = models.ManyToManyField(Category, blank=True, related_name='category_article')
     article_title = models.CharField('Название статьи', max_length=256)
-    article_text = models.TextField('Текст статьи')
+    content = RichTextField('')
+    article_to_category = models.ManyToManyField(Category, blank=True, related_name='category_article')
+    # article_text = models.TextField('Текст статьи')
     article_date = models.DateTimeField('Дата публикации статьи', auto_now_add=True)
 
     def __str__(self):

@@ -6,7 +6,8 @@
 <article>
 <!--    Детали статьи-->
     <h1>{{ article.article_title }}</h1>
-    <p>{{ article.article_text }}</p>
+    <div class="article-content">{{ article.content|safe }}</div>
+
 
 
 {% if user.is_authenticated %}
