@@ -20,7 +20,7 @@ class Event(models.Model):
     event_title = models.CharField('Название события', max_length=256)
     event_text = models.TextField('Текст события')
     event_date = models.DateTimeField('Дата события',auto_now_add=True)
-    # Надо прикрепить фото события
+    cover_image = models.ImageField(upload_to='events/', default='defaults/wrc_emblem.webp')
 
     def __str__(self):
         return self.event_title

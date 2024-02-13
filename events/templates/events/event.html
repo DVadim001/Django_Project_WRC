@@ -9,6 +9,12 @@
     <p>{{ event.event_text }}</p>
 
 
+            {% if event.cover_image %}
+    <img src="{{ event.cover_image.url }}" alt="event.news_title">
+    {% endif %}
+
+
+
     {% if user.is_authenticated %}
     <!--    Форма для комментариев-->
     <form action="{% url 'events:event_comment' event.pk %}" method="post">

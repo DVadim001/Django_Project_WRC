@@ -9,6 +9,12 @@
     <p>{{ news.news_text }}</p>
 
 
+        {% if news.cover_image %}
+    <img src="{{ news.cover_image.url }}" alt="news.news_title">
+    {% endif %}
+
+
+
 {% if user.is_authenticated %}
 <!--    Форма для комментариев-->
     <form action="{% url 'news:news_comment' news.pk %}" method="post">

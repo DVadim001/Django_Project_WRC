@@ -20,6 +20,7 @@ class News(models.Model):
     news_title = models.CharField('Название новости', max_length=256)
     news_text = models.TextField('Текст новости')
     news_date = models.DateTimeField('Дата публикации новости', auto_now_add=True)
+    cover_image = models.ImageField(upload_to='news/', default='defaults/wrc_emblem.webp')
 
     def __str__(self):
         return self.news_title

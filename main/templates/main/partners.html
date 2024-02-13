@@ -1,10 +1,75 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Наши партнёры{% endblock %}
 
-</body>
-</html>
+
+{% block content %}
+
+
+<h2>Наши партнёры</h2>
+
+<section class="partners-section">
+    <h3>Фирменные магазины спортивной одежды и обуви</h3>
+    <ul>
+        <li><strong>RunFast Gear</strong> - широкий ассортимент одежды и обуви для бега. Специальные скидки для членов клуба Wind Runners.</li>
+        <li><strong>Marathon Outfits</strong> - эксклюзивные коллекции от мировых брендов спортивной экипировки.</li>
+        <li><strong>Trail Blazers</strong> - всё для любителей трейлраннинга. От обуви до аксессуаров для бега по пересеченной местности.</li>
+    </ul>
+</section>
+
+<section class="partners-section">
+    <h3>Тренажерные залы и бассейны</h3>
+    <ul>
+        <li><strong>Fitness Empire</strong> - современный фитнес-клуб с широким выбором тренажеров и групповых программ.</li>
+        <li><strong>AquaRunners</strong> - бассейн с тренерами по плаванию и аквааэробике. Идеально подходит для кросс-тренинга бегунов.</li>
+    </ul>
+</section>
+
+<section class="partners-section">
+    <h3>Тренеры по бегу</h3>
+    <ul>
+        <li><strong>Алексей Скороход</strong> - профессиональный тренер с более чем 15-летним опытом. Специализация - марафонский бег.</li>
+        <li><strong>Марина Ветрова</strong> - личный тренер по бегу, индивидуальные и групповые занятия для всех уровней подготовки.</li>
+    </ul>
+</section>
+
+<section class="partners-section">
+    <h3>Стадионы</h3>
+    <ul>
+        <li><strong>Олимпийский Стадион</strong> - место проведения тренировок и соревнований. Открыт для членов клуба Wind Runners Club по специальным тарифам.</li>
+    </ul>
+</section>
+
+
+
+{% endblock %}
+
+{% block footer %}
+  <footer>
+    <div class="footer-container">
+        <section class="footer-social">
+            <h3>Мы в социальных сетях</h3>
+            <a href="https://facebook.com">Facebook</a>
+            <a href="https://instagram.com">Instagram</a>
+            <a href="https://twitter.com">Twitter</a>
+        </section>
+
+        <section class="footer-links">
+            <h3>Быстрые ссылки</h3>
+                    <a href="{% url 'main:index' %}">Главная</a>
+                    <a href="{% url 'news:news_list' %}">Новости</a>
+                    <a href="{% url 'articles:article_list' %}">Статьи</a>
+                    <a href="{% url 'events:event_list' %}">События</a>
+                    <a href="{% url 'main:signup' %}">Регистрация</a>
+                    <a href="{% url 'main:about' %}">О нас</a>
+                    <a href="{% url 'main:partners' %}">Наши партнёры</a>
+        </section>
+
+        <section class="footer-legal">
+            <p>&copy; 2024 Wind Runners Club. Все права защищены.</p>
+            <a href="/privacy">Политика конфиденциальности</a>
+            <a href="/terms">Условия использования</a>
+        </section>
+    </div>
+</footer>
+
+{% endblock %}

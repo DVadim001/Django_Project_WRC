@@ -9,6 +9,10 @@
     <div class="article-content">{{ article.content|safe }}</div>
 
 
+    {% if article.cover_image %}
+    <img src="{{ article.cover_image.url }}" alt="article.article_title">
+    {% endif %}
+
 
 {% if user.is_authenticated %}
     <!--    Форма для комментариев-->

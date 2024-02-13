@@ -37,14 +37,6 @@ A
 news/admin.py,a\6\a63ecaf3f6fd2bce15e1a4c64e1aac02023bf48a
 C
 templates/base.html,d\a\da7c237b85a69c00a9ab8c189bf63e22070fcac3
-E
-templates/header.html,5\6\560469858265bdf005e9583342d090c4df443c5f
-E
-templates/footer.html,6\f\6f6da3899bb486dbf70a263671b21c8c6d60fabc
-D
-templates/about.html,5\8\58893e517e4076b20838ca69fba7259ba475306a
-G
-templates/partners.html,2\6\266429f3820b0dc189abd764b1eb41c49ce9c2fb
 <
 main/urls.py,3\d\3d0eb3ab78d4fd3f5937db7e485b4fd824324640
 =
@@ -101,10 +93,6 @@ O
 main/templates/main/signup.html,b\1\b1d45cf75e22918f70bec86f9d584b18cdf8a6ef
 Q
 !templates/registration/login.html,7\b\7bddf72c7b5006bedb31206aeb760a16166f7b95
-F
-templates/privacy.html,1\1\11ea096a00fbc0f8d51f0dfb3967f8f01fe6a887
-D
-templates/terms.html,0\4\045162ddc4806f7d4222263bcc983f748815183c
 M
 templates/privacy_policy.html,f\d\fd25fea08ed177f21c859f610b98d8a2da839991
 K

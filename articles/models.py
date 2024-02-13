@@ -22,6 +22,7 @@ class Article(models.Model):
     article_to_category = models.ManyToManyField(Category, blank=True, related_name='category_article')
     # article_text = models.TextField('Текст статьи')
     article_date = models.DateTimeField('Дата публикации статьи', auto_now_add=True)
+    cover_image = models.ImageField(upload_to='articles/', default='defaults/wrc_emblem.webp')
 
     def __str__(self):
         return self.article_title
