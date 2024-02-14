@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Изображения в категории: {{ category.name }}</h2>
+<div class="images">
+    {% for image in images %}
+    <div class="image">
+        <h3>{{ image.title }}</h3>
+        <img src="{{ url 'image.image.url' }}" alt="{{ image.title }}">
+<!--        Добавить ссылку на детальное представление изображения-->
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

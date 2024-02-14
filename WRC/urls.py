@@ -26,7 +26,7 @@ urlpatterns = [
     path('articles/', include('articles.urls')),
     path('news/', include('news.urls')),
     path('events/', include('events.urls')),
-    path('', include('gallery.urls')),
+    path('gallery/', include('gallery.urls')),
     path('', include('main.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutWithGetView.as_view(), name='logout')

@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+
 {% block title %}События категории: {{ category.category_name_category }}{% endblock %}
 {% block content %}
+
 <h2>События в категории "{{ category.category_name_category }}"</h2>
 {% for event_item in events %}
     <div>
@@ -8,4 +10,9 @@
         <p>{{ event_item.event_text|truncatewords:30 }}</p>
     </div>
 {% endfor %}
+
+<!-- Ссылка на возврат к списку всех статей -->
+    <a href="{% url 'events:event_list' %}">Вернуться к списку всех событий</a>
+
+
 {% endblock %}

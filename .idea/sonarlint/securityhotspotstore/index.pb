@@ -97,3 +97,25 @@ M
 templates/privacy_policy.html,f\d\fd25fea08ed177f21c859f610b98d8a2da839991
 K
 templates/terms_of_use.html,4\7\474133a93f59c44c50ce370e06136aa7d7f16042
+@
+gallery/forms.py,e\e\ee6dead43401b31b22e0024b463aa1d9807500f8
+A
+gallery/models.py,2\9\2961a2234a6d8ae4ea2c1f2eced8d008f5ed4bde
+@
+gallery/admin.py,d\1\d1485350fb646e9653b10e4b67f662ac809fb08e
+Y
+)gallery/templates/images_by_category.html,7\c\7c345ede7c9a899ac2744c3a1d9f991936797713
+T
+$gallery/templates/search_result.html,9\a\9a9b20b3520a3378fd752538427d0b2a86779bd3
+P
+ gallery/templates/not_found.html,8\b\8bd38ccc5a908a30c0c020fcbc116fad672a23ba
+S
+#gallery/templates/gallery_list.html,6\9\69dac7d28ae0ffbc5349029ce607c1bedf3a2cc2
+U
+%gallery/templates/gallery_detail.html,5\2\524fb0da16979df72b8329037411e81f28960789
+S
+#gallery/templates/image_create.html,3\9\396849e3d98717f98b2bec0b2d2d384bb6670386
+[
++gallery/templates/add_comment_to_image.html,a\8\a8968f94474f3205dc1251d3ca3b0d82987cb612
+[
++gallery/templates/gallery/gallery_list.html,8\2\8296978451e87375d6b07514c9544af12d01e0e1
