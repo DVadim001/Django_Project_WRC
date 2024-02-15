@@ -10,11 +10,10 @@ from events.models import Event
 
 # Отображение главной страницы
 def index(request):
-
     # Переписать!!!
-    articles = Article.objects.all() # получаем все статьи
-    news = News.objects.all() # получаем все новости
-    events = Event.objects.all() # Получаем все события
+    articles = Article.objects.all()  # получаем все статьи
+    news = News.objects.all()  # получаем все новости
+    events = Event.objects.all()  # Получаем все события
     context = {'articles': articles,
                'news': news,
                'events': events}

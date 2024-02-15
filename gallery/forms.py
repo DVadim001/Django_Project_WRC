@@ -12,3 +12,11 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['text']
+        labels = {
+            'text': 'Ваш комментарий',
+        }
+        error_messages = {
+            'text': {
+                'required': 'Это поле обязательно к заполнению'
+            },
+        }

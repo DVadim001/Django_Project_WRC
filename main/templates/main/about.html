@@ -3,16 +3,16 @@
 
 
 {% block content %}
-        <section class="footer-contact">
-            <h3>Контактная информация</h3>
-            <p>Адрес: 123456, Город, Улица, д. 1</p>
-            <p>Телефон: +7 (123) 456-78-90</p>
-            <p>Email: info@windrunnersclub.com</p>
-        </section>
+<section class="footer-contact">
+    <h3>Контактная информация</h3>
+    <p>Адрес: 123456, Город, Улица, д. 1</p>
+    <p>Телефон: +7 (123) 456-78-90</p>
+    <p>Email: info@windrunnersclub.com</p>
+</section>
 {% endblock %}
 
 {% block footer %}
-  <footer>
+<footer>
     <div class="footer-container">
         <section class="footer-social">
             <h3>Мы в социальных сетях</h3>
@@ -23,13 +23,13 @@
 
         <section class="footer-links">
             <h3>Быстрые ссылки</h3>
-                    <a href="{% url 'main:index' %}">Главная</a>
-                    <a href="{% url 'news:news_list' %}">Новости</a>
-                    <a href="{% url 'articles:article_list' %}">Статьи</a>
-                    <a href="{% url 'events:event_list' %}">События</a>
-                    <a href="{% url 'main:signup' %}">Регистрация</a>
-                    <a href="{% url 'main:about' %}">О нас</a>
-                    <a href="{% url 'main:partners' %}">Наши партнёры</a>
+            <a href="{% url 'main:index' %}">Главная</a>
+            <a href="{% url 'news:news_list' %}">Новости</a>
+            <a href="{% url 'articles:article_list' %}">Статьи</a>
+            <a href="{% url 'events:event_list' %}">События</a>
+            <a href="{% url 'main:signup' %}">Регистрация</a>
+            <a href="{% url 'main:about' %}">О нас</a>
+            <a href="{% url 'main:partners' %}">Наши партнёры</a>
         </section>
 
         <section class="footer-legal">

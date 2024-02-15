@@ -11,17 +11,17 @@
 </form>
 
 
-
 <h1>Предстоящие события</h1>
 {% for event in events %}
 <div>
     <h2><a href="{% url 'events:event_detail' event.id %}">{{ event.event_title }}</a></h2>
     <p>{{ event.event_text|truncatewords:30 }}</p>
-<p>Категории:
-    {% for category in event.event_to_category.all %}
-    <a href="{% url 'events:events_by_category' category.id %}">{{ category.category_name_category }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-</p>
+    <p>Категории:
+        {% for category in event.event_to_category.all %}
+        <a href="{% url 'events:events_by_category' category.id %}">{{ category.category_name_category }}</a>{% if not
+        forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
 
 </div>
 {% endfor %}

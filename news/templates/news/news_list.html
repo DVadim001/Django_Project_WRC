@@ -16,7 +16,8 @@
     <p>{{ item.news_text|truncatewords:30 }}</p> <!--Отображение первых 30 слов новости-->
     <p>Категории:
         {% for category in item.news_to_category.all %}
-            <a href="{% url 'news:news_by_category' category.id %}">{{ category.category_name_news }}</a>{% if not forloop.last %}, {% endif %}
+        <a href="{% url 'news:news_by_category' category.id %}">{{ category.category_name_news }}</a>{% if not
+        forloop.last %}, {% endif %}
         {% endfor %}
     </p>
 </div>

@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import Image, Comment, Category
+from .models import Event, Image, Comment, Category
+
+
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 1
+
+
+class EventAdmin(admin.ModelAdmin):
+    inlines = [ImageInline, ]
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -18,8 +27,7 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+admin.site.register(Event, EventAdmin)
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Comment, CommentAdmin)
-
-

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ event.title }}</h2>
+<div class="images">
+    {% for image in images %}
+    <div class="image">
+        <a href="{% url 'gallery:gallery_detail' image.id %}">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}">
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

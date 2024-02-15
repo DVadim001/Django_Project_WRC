@@ -4,15 +4,14 @@
 
 {% block content %}
 <article>
-<!--    Детали события-->
+    <!--    Детали события-->
     <h1>{{ event.event_title }}</h1>
     <p>{{ event.event_text }}</p>
 
 
-            {% if event.cover_image %}
+    {% if event.cover_image %}
     <img src="{{ event.cover_image.url }}" alt="event.news_title">
     {% endif %}
-
 
 
     {% if user.is_authenticated %}
@@ -25,22 +24,20 @@
     {% else %}
     <p>
         Для оставления комментария необходимо <a href="{% url 'login' %}">Войти</a>
-         или <a href="{% url 'main:signup' %}">Зарегистрироваться</a>.
+        или <a href="{% url 'main:signup' %}">Зарегистрироваться</a>.
     </p>
-{% endif %}
+    {% endif %}
 
-<!-- Вывод категорий событий как ссылки -->
-<p>Категории:
-    {% for category in event.event_to_category.all %}
-    <a href="{% url 'events:events_by_category' category.id %}">{{ category.category_name_category }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-</p>
-
-
-
+    <!-- Вывод категорий событий как ссылки -->
+    <p>Категории:
+        {% for category in event.event_to_category.all %}
+        <a href="{% url 'events:events_by_category' category.id %}">{{ category.category_name_category }}</a>{% if not
+        forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
 
 
-<!-- Вывод комментариев -->
+    <!-- Вывод комментариев -->
     {% for comment in event.comments_event.all %}
     <div>
         <strong>{{ comment.comment_author_event }}:</strong>

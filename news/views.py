@@ -30,12 +30,12 @@ def news(request, pk):
         comment_form = forms.CommentForm(request.POST)
         # Проверяем валидность формы:
         if comment_form.is_valid():
-            comment = comment_form.save(commit=False) # Сразу в БД не сохраняем
-            comment.news = news_item # Привязываем комментарий к конкретной новости
-            comment.save() # Теперь сохраняем
-            return redirect('news:news_detail', pk=news_item.pk) # Перенаправляем обратно к новости
+            comment = comment_form.save(commit=False)  # Сразу в БД не сохраняем
+            comment.news = news_item  # Привязываем комментарий к конкретной новости
+            comment.save()  # Теперь сохраняем
+            return redirect('news:news_detail', pk=news_item.pk)  # Перенаправляем обратно к новости
     else:
-        comment_form = forms.CommentForm() # Создаём пустой экземпляр формы для GET-запроса
+        comment_form = forms.CommentForm()  # Создаём пустой экземпляр формы для GET-запроса
 
     # Добавляем форму комментария в текст
     context = {'news': news_item,
@@ -49,7 +49,7 @@ def search_news(request):
     if 'search_query' in request.GET:
         search_query = request.GET.get('search_query')
         news = News.objects.filter(news_title__icontains=search_query)
-        if news: # Проверяет, содержит ли запрос объекты
+        if news:  # Проверяет, содержит ли запрос объекты
             # Если новости найдены, рендер страницы с результатами поиска
             context = {'news': news}
             return render(request, 'news/search_result.html', context)
@@ -71,11 +71,10 @@ def comment(request, pk):
             comment = comment_form.save(commit=False)
             comment.comment_news = news_item  # Устанавливаем связь с новостью правильно
             comment.save()
-            return HttpResponseRedirect(reverse('news:news_detail', args=[news_item.pk,]))
-    return HttpResponseRedirect(reverse('news:news_detail', args=[news_item.pk,]))
+            return HttpResponseRedirect(reverse('news:news_detail', args=[news_item.pk, ]))
+    return HttpResponseRedirect(reverse('news:news_detail', args=[news_item.pk, ]))
 
 
 # Если не найдено, то редирект на "не найдено"
 def news_not_found(request):
     return render(request, 'news/not_found.html')
-

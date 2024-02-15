@@ -1,87 +1,87 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Wind Runners Club{% endblock %}</title>
-        <link rel="icon" href="{% static 'images/wrc_emblem.webp' %}" type="image/webp">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wind Runners Club{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/wrc_emblem.webp' %}" type="image/webp">
+</head>
+<body>
 
 
-        <header>
+<header>
 
 
-            {% block header %}
+    {% block header %}
 
-            <!--            Логотип в шапке-->
-            <a href="{% url 'main:index' %}">
-                <img src="{% static 'images/wrc_emblem.webp' %}" alt="Логотип Wend Runners Club" width="100">
-            </a>
+    <!--            Логотип в шапке-->
+    <a href="{% url 'main:index' %}">
+        <img src="{% static 'images/wrc_emblem.webp' %}" alt="Логотип Wend Runners Club" width="100">
+    </a>
 
-                <nav>
-                    <a href="{% url 'main:index' %}">Главная</a>
-                    <a href="{% url 'news:news_list' %}">Новости</a>
-                    <a href="{% url 'articles:article_list' %}">Статьи</a>
-                    <a href="{% url 'events:event_list' %}">События</a>
-                    <a href="{% url 'gallery:gallery_list' %}">Галерея</a>
-                    <a href="{% url 'main:about' %}">О нас</a>
-                    <a href="{% url 'main:partners' %}">Наши партнёры</a>
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}" methods="post">Выход</a>
-                    {% else %}
-                    <a href="{% url 'login' %}">Вход </a>|
-                    <a href="{% url 'main:signup' %}"> Регистрация</a>
-                    {% endif %}
-                </nav>
-            {% endblock %}
-        </header>
+    <nav>
+        <a href="{% url 'main:index' %}">Главная</a>
+        <a href="{% url 'news:news_list' %}">Новости</a>
+        <a href="{% url 'articles:article_list' %}">Статьи</a>
+        <a href="{% url 'events:event_list' %}">События</a>
+        <a href="{% url 'gallery:gallery_list' %}">Галерея</a>
+        <a href="{% url 'main:about' %}">О нас</a>
+        <a href="{% url 'main:partners' %}">Наши партнёры</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" methods="post">Выход</a>
+        {% else %}
+        <a href="{% url 'login' %}">Вход </a>|
+        <a href="{% url 'main:signup' %}"> Регистрация</a>
+        {% endif %}
+    </nav>
+    {% endblock %}
+</header>
 
-        {% block content %} {% endblock %}
+{% block content %} {% endblock %}
 
-        <footer>
+<footer>
 
-            {% block footer %}
+    {% block footer %}
 
-            <footer>
-    <div class="footer-container">
-        <section class="footer-contact">
-            <h3>Контактная информация</h3>
-            <p>Адрес: 123456, Город, Улица, д. 1</p>
-            <p>Телефон: +7 (123) 456-78-90</p>
-            <p>Email: info@windrunnersclub.com</p>
-        </section>
+    <footer>
+        <div class="footer-container">
+            <section class="footer-contact">
+                <h3>Контактная информация</h3>
+                <p>Адрес: 123456, Город, Улица, д. 1</p>
+                <p>Телефон: +7 (123) 456-78-90</p>
+                <p>Email: info@windrunnersclub.com</p>
+            </section>
 
-        <section class="footer-social">
-            <h3>Мы в социальных сетях</h3>
-            <a href="https://facebook.com">Facebook</a>
-            <a href="https://instagram.com">Instagram</a>
-            <a href="https://twitter.com">Twitter</a>
-        </section>
+            <section class="footer-social">
+                <h3>Мы в социальных сетях</h3>
+                <a href="https://facebook.com">Facebook</a>
+                <a href="https://instagram.com">Instagram</a>
+                <a href="https://twitter.com">Twitter</a>
+            </section>
 
-        <section class="footer-links">
-            <h3>Быстрые ссылки</h3>
-                    <a href="{% url 'main:index' %}">Главная</a>
-                    <a href="{% url 'news:news_list' %}">Новости</a>
-                    <a href="{% url 'articles:article_list' %}">Статьи</a>
-                    <a href="{% url 'events:event_list' %}">События</a>
-                    <a href="{% url 'gallery:gallery_list' %}">Галерея</a>
-                    <a href="{% url 'main:about' %}">О нас</a>
-                    <a href="{% url 'main:partners' %}">Наши партнёры</a>
-        </section>
+            <section class="footer-links">
+                <h3>Быстрые ссылки</h3>
+                <a href="{% url 'main:index' %}">Главная</a>
+                <a href="{% url 'news:news_list' %}">Новости</a>
+                <a href="{% url 'articles:article_list' %}">Статьи</a>
+                <a href="{% url 'events:event_list' %}">События</a>
+                <a href="{% url 'gallery:gallery_list' %}">Галерея</a>
+                <a href="{% url 'main:about' %}">О нас</a>
+                <a href="{% url 'main:partners' %}">Наши партнёры</a>
+            </section>
 
-        <section class="footer-legal">
-            <p>&copy; 2024 Wind Runners Club. Все права защищены.</p>
-            <a href="{% url 'main:privacy_policy' %}">Политика конфиденциальности</a>
-            <a href="{% url 'main:terms_of_use' %}">Условия использования</a>
-        </section>
-    </div>
+            <section class="footer-legal">
+                <p>&copy; 2024 Wind Runners Club. Все права защищены.</p>
+                <a href="{% url 'main:privacy_policy' %}">Политика конфиденциальности</a>
+                <a href="{% url 'main:terms_of_use' %}">Условия использования</a>
+            </section>
+        </div>
+    </footer>
+
+
+    {% endblock %}
 </footer>
 
 
-            {% endblock %}
-        </footer>
-
-
-    </body>
+</body>
 </html>

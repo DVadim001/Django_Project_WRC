@@ -4,19 +4,18 @@
 
 {% block content %}
 <article>
-<!--    Детили новости-->
+    <!--    Детили новости-->
     <h1>{{ news.news_title }}</h1>
     <p>{{ news.news_text }}</p>
 
 
-        {% if news.cover_image %}
+    {% if news.cover_image %}
     <img src="{{ news.cover_image.url }}" alt="news.news_title">
     {% endif %}
 
 
-
-{% if user.is_authenticated %}
-<!--    Форма для комментариев-->
+    {% if user.is_authenticated %}
+    <!--    Форма для комментариев-->
     <form action="{% url 'news:news_comment' news.pk %}" method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}
@@ -25,19 +24,20 @@
     {% else %}
     <p>
         Для оставления комментария необходимо <a href="{% url 'login' %}">Войти</a>
-         или <a href="{% url 'main:signup' %}">Зарегистрироваться</a>.
+        или <a href="{% url 'main:signup' %}">Зарегистрироваться</a>.
     </p>
-{% endif %}
+    {% endif %}
 
-<!--    Вывод категорий новостей как ссылки-->
+    <!--    Вывод категорий новостей как ссылки-->
     <p>
         {% for category in news.news_to_category.all %}
-        <a href="{% url 'news:news_by_category' category.id %}">{{ category.category_name_news }}</a>{% if not forloop.last %}, {% endif %}
+        <a href="{% url 'news:news_by_category' category.id %}">{{ category.category_name_news }}</a>{% if not
+        forloop.last %}, {% endif %}
         {% endfor %}
     </p>
 
 
-<!--    Вывод комментариев   -->
+    <!--    Вывод комментариев   -->
     {% for comment in news.comments_news.all %}
     <div>
         <strong>{{ comment.comment_author_news }}:</strong>

@@ -1,17 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
-from .models import Image, Category
+from .models import Image, Category, Event
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseRedirect
-from django.urls import reverse
 from django.db.models import Q
 
 
 # Вывод всех объектов (названия с изображениями).
 def gallery_list(request):
-    images = Image.objects.all()
-    context = {'images': images}
+    events = Event.objects.all()
+    context = {'events': events}
     return render(request, 'gallery/gallery_list.html', context)
+
+
+# Вывод всех объектов (названия с изображениями).
+def event_detail(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    images = event.images.all()
+    context = {'event': event, 'images': images}
+    return render(request, 'gallery/event_detail.html', context)
+
 
 # Загрузка нового изображения.
 def image_create(request):
@@ -34,10 +41,28 @@ def images_by_category(request, category_id):
 
 
 # Вывод отдельного конкретного объекта изображения с комментариями.
-def gallery_detail(request, pk):
-    image = get_object_or_404(Image, pk=pk)
+# def gallery_detail(request, image_id):
+#     image = get_object_or_404(Image, pk=image_id)
+#     comments = image.comments.all()
+#     context = {'image': image, 'comments': comments}
+#     return render(request, 'gallery/gallery_detail.html', context)
+
+
+def gallery_detail(request, image_id):
+    image = get_object_or_404(Image, pk=image_id)
     comments = image.comments.all()
-    context = {'image': image, 'comments': comments}
+    form = forms.CommentForm()
+    if request.method == 'POST':
+        form = forms.CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.image = image
+            comment.author = request.user
+            comment.save()
+            return redirect('gallery:gallery_detail', image_id=image_id)
+    context = {'image': image,
+               'comments': comments,
+               'form': form}
     return render(request, 'gallery/gallery_detail.html', context)
 
 
@@ -53,9 +78,10 @@ def search_category(request):
         return redirect('gallery:category_not_found')
 
 
+@login_required
 # Оставление комментария на стр определённого изображения.
-def add_comment_to_image(request, pk):
-    image = get_object_or_404(Image, pk)
+def add_comment_to_image(request, image_id):
+    image = get_object_or_404(Image, image_id)
     if request.method == 'POST':
         form = forms.CommentForm(request.POST)
         if form.is_valid():
@@ -63,10 +89,11 @@ def add_comment_to_image(request, pk):
             comment.image = image
             comment.author = request.user
             comment.save()
-            return redirect('gallery_details', pk=image.pk)
+            return redirect('gallery:gallery_detail', image_id=image_id)
     else:
         form = forms.CommentForm()
     return render(request, 'gallery/add_comment_to_image.html', {'form': form})
+
 
 #  Если объект не найден, то редирект на "не найдено"
 def category_not_found(request):

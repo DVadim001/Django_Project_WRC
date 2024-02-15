@@ -4,12 +4,34 @@
 <div class="image-detail">
     <h1>{{ image.title }}</h1>
     <img src="{{ image.image.url }}" alt="{{ image.title }}">
-    <p>{{ imafe.description }}</p>
+    <p>{{ image.description }}</p>
+</div>
+
+
+<div class="comments">
     <h3>Комментарии:</h3>
-    {% for comment in comments %}
+    {% for comment in image.comments.all %}
     <div class="comment">
-        <p>{{ comment.author }}: {{ comment.text }}</p>
+        <p><strong>{{ comment.author.username }}:</strong> {{ comment.text }}</p>
+        <p>{{ comment.created_date }}</p>
     </div>
+    {% empty %}
+    <p>Комментариев пока нет.</p>
     {% endfor %}
 </div>
+
+
+{% if user.is_authenticated %}
+<div class="comment-form">
+    <h3>Добавить комментарий</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+{% else %}
+<p><a href="{% url 'login' %}">Войдите</a>, чтобы оставить комментарий.</p>
+{% endif %}
+
 {% endblock %}

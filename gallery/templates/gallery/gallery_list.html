@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Главная{% endblock %}
-
 {% block content %}
-<h1>Галерея</h1>
-<div class="gallery">
-    {% for image in images %}
-    <div class="gallery-item">
-        <h2>{{ image.title }}</h2>
-        <p>Категория: {{ image.category.name }}</p>
-        <a href="{% url 'gallery_detail' image.id %}">
-            <img src="{{ image.image.url }}" alt="{{ image.title }}">
-        </a>
+<h1>Галерея событий</h1>
+<div class="events">
+    {% for event in events %}
+    <div class="event">
+        <h2><a href="{% url 'gallery:event_detail' event.id %}">{{ event.title }}</a></h2>
+        {% if event.images.all %}
+        <div class="image">
+            <!-- Показываем только первое изображение для события -->
+            <img src="{{ event.images.all.0.image.url }}" alt="{{ event.images.all.0.title }}">
+        </div>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
