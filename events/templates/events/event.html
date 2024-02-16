@@ -48,8 +48,8 @@
 </article>
 
 {% if user.is_authenticated %}
-<form action="{% url 'gallery:event_participate' event.pk %}" method="post">
-    {csrf_token}
+<form action="{% url 'events:event_participate' event.pk %}" method="post">
+    {% csrf_token %}
     <button type="submit" class="btn btn-primary">Принять участие</button>
 </form>
 {% endif %}

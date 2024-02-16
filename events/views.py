@@ -88,9 +88,9 @@ def send_telegram_message(user_id, event_id):
     user = User.objects.get(pk=user_id)
     event = Event.objects.get(pk=event_id)
     # Формируем текстсообщения
-    text = f"Пользователь {user.username} ({user.first_name} {user.last_name}) хочет принять участие в событии '{event.title}'."
+    text = f"Пользователь {user.username} {user.first_name} {user.last_name} хочет принять участие в событии '{event.event_title}'."
     user_id = 82836904
-    bot.send_message(user_id=user_id, text=text)
+    bot.send_message(chat_id=user_id, text=text)
 
 
 # Обработка функции подачи заявки на событие

@@ -130,6 +130,4 @@ X
 ;
 WRC/wsgi.py,9\e\9ef844d436c231014e426c3f877e9a71770ad119
 B
-events/hendlers.py,0\0\00f2446ed69fc33b54f71b1be089c2e4f6d2c550
-B
 events/handlers.py,9\8\988c22460fe53433533d3d7f746c1489c6d47de1
