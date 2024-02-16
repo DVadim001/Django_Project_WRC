@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Изображения в категории: {{ category.name }}</h2>
-<div class="images">
-    {% for image in images %}
-    <div class="image">
-        <h3>{{ image.title }}</h3>
-        <img src="{{ image.image.url }}" alt="{{ image.title }}">
-        <!--        Добавить ссылку на детальное представление изображения-->
+<h2>События в категории: {{ category.name }}</h2>
+<div class="events">
+    {% for event in category.events.all %}
+    <div class="event">
+        <h3><a href="{% url 'gallery:event_detail' event.id %}">{{ event.title }}</a></h3>
+        <!-- Показываем только первое изображение или миниатюру -->
+        {% if event.images.all %}
+            <img src="{{ event.images.all.0.image.url }}" alt="{{ event.images.all.0.title }}">
+        {% else %}
+            <p>Изображения отсутствуют</p>
+        {% endif %}
+        <!-- Дополнительная информация о событии -->
     </div>
+    {% empty %}
+        <p>В этой категории событий нет.</p>
     {% endfor %}
 </div>
 {% endblock %}

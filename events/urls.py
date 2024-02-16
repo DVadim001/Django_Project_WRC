@@ -9,4 +9,5 @@ urlpatterns = [
     path('not_found/', views.event_not_found, name='event_not_found'),
     path('event/<int:pk>/comment/', views.comment, name='event_comment'),
     path('category/<int:category_id>/', views.events_by_category, name='events_by_category'),
+    path('event/<int:event_id>/participate/', views.event_participate, name='event_participate'),
 ]

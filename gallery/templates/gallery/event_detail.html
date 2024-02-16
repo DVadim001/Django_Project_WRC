@@ -11,4 +11,10 @@
     </div>
     {% endfor %}
 </div>
+
+{% if event.category %}
+    <p>Категория: <a href="{% url 'gallery:images_by_category' category_id=event.category.id %}">{{ event.category.name }}</a></p>
+{% else %}
+<p>Категория: не указана</p>
+{% endif %}
 {% endblock %}

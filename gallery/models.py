@@ -2,18 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Таблица события
-class Event(models.Model):
-    title = models.CharField(max_length=256)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = 'Событие'
-        verbose_name_plural = 'События'
-
-
 # Таблица категорий (по событиям) изображений
 class Category(models.Model):
     name = models.CharField(max_length=128)
@@ -24,6 +12,19 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
+
+# Таблица события
+class Event(models.Model):
+    title = models.CharField(max_length=256)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Событие'
+        verbose_name_plural = 'События'
 
 
 # Таблица изображений

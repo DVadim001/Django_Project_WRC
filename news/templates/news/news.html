@@ -31,8 +31,7 @@
     <!--    Вывод категорий новостей как ссылки-->
     <p>
         {% for category in news.news_to_category.all %}
-        <a href="{% url 'news:news_by_category' category.id %}">{{ category.category_name_news }}</a>{% if not
-        forloop.last %}, {% endif %}
+        <a href="{% url 'news:news_by_category' category.id %}">{{ category.category_name_news }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </p>
 

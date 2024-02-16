@@ -18,8 +18,7 @@
     <p>{{ event.event_text|truncatewords:30 }}</p>
     <p>Категории:
         {% for category in event.event_to_category.all %}
-        <a href="{% url 'events:events_by_category' category.id %}">{{ category.category_name_category }}</a>{% if not
-        forloop.last %}, {% endif %}
+        <a href="{% url 'events:events_by_category' category.id %}">{{ category.category_name_category }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </p>
 

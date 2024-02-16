@@ -18,8 +18,7 @@
     <p>{{ article.content|truncatewords:30|safe }}</p> <!--Отображение первых 30 слов статьи-->
     <p>Категории:
         {% for category in article.article_to_category.all %}
-        <a href="{% url 'articles:articles_by_category' category.id %}">{{ category.category_name }}</a>{% if not
-        forloop.last %}, {% endif %}
+        <a href="{% url 'articles:articles_by_category' category.id %}">{{ category.category_name }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </p>
 </div>

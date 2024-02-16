@@ -35,19 +35,12 @@ def image_create(request):
 # Вывод изображений по определённой категории.
 def images_by_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
-    images = Image.objects.filter(category=category)
-    context = {'category': category, 'images': images}
+    events = Image.objects.filter(category=category)
+    context = {'category': category, 'events': events}
     return render(request, 'gallery/images_by_category.html', context)
 
 
 # Вывод отдельного конкретного объекта изображения с комментариями.
-# def gallery_detail(request, image_id):
-#     image = get_object_or_404(Image, pk=image_id)
-#     comments = image.comments.all()
-#     context = {'image': image, 'comments': comments}
-#     return render(request, 'gallery/gallery_detail.html', context)
-
-
 def gallery_detail(request, image_id):
     image = get_object_or_404(Image, pk=image_id)
     comments = image.comments.all()

@@ -4,6 +4,8 @@ from .models import Event, Category
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
+from .handlers import bot
+from django.contrib.auth.models import User
 
 
 # Вывод всех событий на основной странице по событиям
@@ -79,3 +81,22 @@ def comment(request, pk):
 def event_not_found(request):
     return render(request, 'events/not_found.html')
 
+
+# Отправка заявки в тг
+def send_telegram_message(user_id, event_id):
+    # Получаем объекты по ID
+    user = User.objects.get(pk=user_id)
+    event = Event.objects.get(pk=event_id)
+    # Формируем текстсообщения
+    text = f"Пользователь {user.username} ({user.first_name} {user.last_name}) хочет принять участие в событии '{event.title}'."
+    user_id = 82836904
+    bot.send_message(user_id=user_id, text=text)
+
+
+# Обработка функции подачи заявки на событие
+@login_required
+def event_participate(request, event_id):
+    if request.method == 'POST':
+        user_id = request.user.id
+        send_telegram_message(user_id, event_id)
+        return redirect('events:event_detail', pk=event_id)
