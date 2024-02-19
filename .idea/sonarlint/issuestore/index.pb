@@ -133,3 +133,5 @@ B
 events/handlers.py,9\8\988c22460fe53433533d3d7f746c1489c6d47de1
 D
 static/css/style.css,3\6\36e68d0961b94e1750624bc9e2f66c060d73b91b
+@
+requirements.txt,1\9\19359a61ae2446b51b549167b014da2fcf265768
