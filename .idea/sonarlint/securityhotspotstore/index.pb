@@ -131,3 +131,5 @@ X
 WRC/wsgi.py,9\e\9ef844d436c231014e426c3f877e9a71770ad119
 B
 events/handlers.py,9\8\988c22460fe53433533d3d7f746c1489c6d47de1
+D
+static/css/style.css,3\6\36e68d0961b94e1750624bc9e2f66c060d73b91b

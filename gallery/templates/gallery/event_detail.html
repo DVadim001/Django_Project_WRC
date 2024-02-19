@@ -6,7 +6,7 @@
     {% for image in images %}
     <div class="image">
         <a href="{% url 'gallery:gallery_detail' image.id %}">
-            <img src="{{ image.image.url }}" alt="{{ image.title }}">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="custom-img">
         </a>
     </div>
     {% endfor %}

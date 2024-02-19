@@ -9,7 +9,7 @@
     {% for image in images %}
     <div class="gallery-item">
         <h2><a href="{% url 'gallery:gallery_detail' image.id %}%">{{ image.title }}</a></h2>
-        <img src="{{ image.image.url }}" alt="{{ image.title }}">
+        <img src="{{ image.image.url }}" alt="{{ image.title }}" class="custom-img">
         <p>Категория: <a href="{% url 'gallery:images_by_caterogy' image.category.id %}">{{ image.category.name }}</a>
         </p>
     </div>

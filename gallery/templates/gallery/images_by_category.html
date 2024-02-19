@@ -8,7 +8,7 @@
         <h3><a href="{% url 'gallery:event_detail' event.id %}">{{ event.title }}</a></h3>
         <!-- Показываем только первое изображение или миниатюру -->
         {% if event.images.all %}
-            <img src="{{ event.images.all.0.image.url }}" alt="{{ event.images.all.0.title }}">
+            <img src="{{ event.images.all.0.image.url }}" alt="{{ event.images.all.0.title }}" class="custom-img">
         {% else %}
             <p>Изображения отсутствуют</p>
         {% endif %}

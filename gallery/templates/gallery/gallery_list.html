@@ -9,7 +9,7 @@
         {% if event.images.all %}
         <div class="image">
             <!-- Показываем только первое изображение для события -->
-            <img src="{{ event.images.all.0.image.url }}" alt="{{ event.images.all.0.title }}">
+            <img src="{{ event.images.all.0.image.url }}" alt="{{ event.images.all.0.title }}" class="custom-img">
         </div>
         {% endif %}
     </div>

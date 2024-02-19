@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <title>{% block title %}Wind Runners Club{% endblock %}</title>
     <link rel="icon" href="{% static 'images/wrc_emblem.webp' %}" type="image/webp">
+    <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 <body>
 
@@ -18,7 +22,7 @@
     <a href="{% url 'main:index' %}">
         <img src="{% static 'images/wrc_emblem.webp' %}" alt="Логотип Wend Runners Club" width="100">
     </a>
-
+<h1>Wind Runners Club</h1>
     <nav>
         <a href="{% url 'main:index' %}">Главная</a>
         <a href="{% url 'news:news_list' %}">Новости</a>
@@ -82,6 +86,11 @@
     {% endblock %}
 </footer>
 
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-g9QZpGFWpPHNlq2Th4InJ5EzLLNV4Cp6C1LB33lRvG7bf4IbxVx5Kd4ptVV9flB6" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy4Ck4SOF4y4Ck4C2DgHfViXydVeLm+JDM" crossorigin="anonymous"></script>
 
 </body>
 </html>
