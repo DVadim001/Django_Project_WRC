@@ -135,3 +135,7 @@ D
 static/css/style.css,3\6\36e68d0961b94e1750624bc9e2f66c060d73b91b
 @
 requirements.txt,1\9\19359a61ae2446b51b549167b014da2fcf265768
+;
+WRC/asgi.py,0\1\01eabd0ee23d75463f296c646a4cd211bc2a53cd
+?
+WRC/__init__.py,3\6\3677a8ed83e6214e6cf851db4860423f50865bea
